@@ -4,6 +4,9 @@
  */
 
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 /// Builds `URLRequest` for sending data to Datadog.
 internal struct RequestBuilder {
@@ -60,10 +63,10 @@ internal struct RequestBuilder {
         }
 
         /// Standard "User-Agent" header.
-        static func userAgentHeader(appName: String, appVersion: String, device: Device) -> HTTPHeader {
+        static func userAgentHeader(appName: String, appVersion: String) -> HTTPHeader {
             return HTTPHeader(
                 field: userAgentHeaderField,
-                value: .constant("\(appName)/\(appVersion) CFNetwork (\(device.model); \(device.osName)/\(device.osVersion))")
+                value: .constant("\(appName)/\(appVersion) CFNetwork ()")
             )
         }
 
@@ -137,7 +140,12 @@ internal struct RequestBuilder {
 
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = headers
-        request.httpBody = headers["Content-Encoding"] != nil ? data.deflate() : data
+        
+        guard headers["Content-Encoding"] == nil else {
+            fatalError("Content-Encoding header not supported on Linux")
+        }
+        
+        request.httpBody = data
         return request
     }
 }

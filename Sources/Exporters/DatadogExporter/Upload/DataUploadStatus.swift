@@ -4,6 +4,9 @@
  */
 
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 private enum HTTPResponseStatusCode: Int {
     /// The request has been accepted for processing.

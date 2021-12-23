@@ -9,7 +9,6 @@ import Foundation
 internal struct FeaturesCommonDependencies {
     let performance: PerformancePreset
     let httpClient: HTTPClient
-    let device: Device
     let dateProvider: DateProvider
 }
 

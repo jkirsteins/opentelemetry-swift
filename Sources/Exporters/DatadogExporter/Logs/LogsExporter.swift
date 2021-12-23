@@ -60,8 +60,7 @@ internal class LogsExporter {
                 .contentTypeHeader(contentType: .applicationJSON),
                 .userAgentHeader(
                     appName: configuration.applicationName,
-                    appVersion: configuration.version,
-                    device: Device.current
+                    appVersion: configuration.version
                 ),
                 .ddAPIKeyHeader(apiKey: configuration.apiKey),
                 .ddEVPOriginHeader(source: configuration.source),

@@ -1,8 +1,13 @@
 # opentelemetry-swift
 
 A fork of <https://github.com/open-telemetry/opentelemetry-swift> that
-removes dependency on `os.activity`.
+allows compiling these targets on Linux:
 
-If you need the functionality it provides, this will not work for you.
+- OpenTelemetryApi
+- OpenTelemetrySdk
+- SwiftMetricsShim
+- DatadogExporter
 
-But if you don't, this fork allows compiling on Linux.
+This should allow you to use the [Apple Swift Metrics API](https://github.com/apple/swift-metrics) with the `SwiftMetricsShim` to export to Datadog.
+
+**Note: definitely not production ready.**

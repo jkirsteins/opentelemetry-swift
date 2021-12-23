@@ -5,6 +5,9 @@
 
 
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 /// A type that performs data uploads.
 internal protocol DataUploaderType {

@@ -49,8 +49,7 @@ internal class MetricsExporter {
                 .contentTypeHeader(contentType: .textPlainUTF8),
                 .userAgentHeader(
                     appName: configuration.applicationName,
-                    appVersion: configuration.version,
-                    device: Device.current
+                    appVersion: configuration.version
                 ),
                 .ddAPIKeyHeader(apiKey: configuration.apiKey),
                 .ddEVPOriginHeader(source: configuration.source),
