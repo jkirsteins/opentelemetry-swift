@@ -6,6 +6,10 @@
 import Foundation
 import OpenTelemetryApi
 
+func autoreleasepool(_ closure: ()->()) {
+    closure()
+}
+
 /// This class provides a static global accessor for SDK telemetry objects TracerProviderSdk,
 /// MeterSdkFactory BaggageManagerSdk.
 /// This is a convenience class getting and casting the telemetry objects from OpenTelemetry.
