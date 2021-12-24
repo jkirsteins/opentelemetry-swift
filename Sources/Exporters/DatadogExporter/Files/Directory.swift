@@ -50,13 +50,13 @@ internal struct Directory {
 /// * System may delete data in `/Library/Cache` to free up disk space which reduces the impact on devices working under heavy space pressure.
 private func createCachesSubdirectoryIfNotExists(subdirectoryPath: String) throws -> URL {
     guard let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-        throw ExporterError(description: "Cannot obtain `/Library/Caches/` url.")
+        throw ExporterError(description: "Cannot obtain caches directory url.")
     }
     let subdirectoryURL = cachesDirectoryURL.appendingPathComponent(subdirectoryPath, isDirectory: true)
     do {
         try FileManager.default.createDirectory(at: subdirectoryURL, withIntermediateDirectories: true, attributes: nil)
     } catch {
-        throw ExporterError(description: "Cannot create subdirectory in `/Library/Caches/` folder.")
+        throw ExporterError(description: "Cannot create subdirectory in `\(cachesDirectoryURL.path)` folder.")
     }
     return subdirectoryURL
 }
