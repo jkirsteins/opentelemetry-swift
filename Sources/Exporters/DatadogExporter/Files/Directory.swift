@@ -49,9 +49,10 @@ internal struct Directory {
 /// * `/Library/Caches` is exclduded from iTunes and iCloud backups by default.
 /// * System may delete data in `/Library/Cache` to free up disk space which reduces the impact on devices working under heavy space pressure.
 private func createCachesSubdirectoryIfNotExists(subdirectoryPath: String) throws -> URL {
-    guard let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-        throw ExporterError(description: "Cannot obtain caches directory url.")
-    }
+    // guard let cachesDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+    //     throw ExporterError(description: "Cannot obtain caches directory url.")
+    // }
+    let cachesDirectoryURL = FileManager.default.temporaryDirectory
     let subdirectoryURL = cachesDirectoryURL.appendingPathComponent(subdirectoryPath, isDirectory: true)
     do {
         try FileManager.default.createDirectory(at: subdirectoryURL, withIntermediateDirectories: true, attributes: nil)
